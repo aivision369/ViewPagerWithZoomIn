@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 
 public class AdapterEventImages extends PagerAdapter {
 
+
     private Context mContext;
     private int [] imageList;
     private OnTouchListener onTouchListener;
@@ -43,18 +44,17 @@ public class AdapterEventImages extends PagerAdapter {
             image.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
+
                     if (image.getCurrentZoom() > 1.0) {
                         onTouchListener.onTouch(true);
                     } else {
+
                         onTouchListener.onTouch(false);
                     }
                     return false;
                 }
-
             });
         }
-
-
         return itemView;
     }
 

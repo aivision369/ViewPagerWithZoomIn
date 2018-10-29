@@ -3,13 +3,16 @@ package com.viewpagerwithzoomin;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int[] imageList = {R.mipmap.bg1, R.mipmap.bg2, R.mipmap.bg3};
+    private int[] imageList = {R.mipmap.bg1, R.mipmap.bg2, R.mipmap.bg3, R.mipmap.bg1, R.mipmap.bg2, R.mipmap.bg3};
     private ViewPager viewpagerImages;
     AdapterEventImages adapterEventImages;
     private boolean isEnabledPagePadding;
+    private int padding =20;
+    private RelativeLayout rlParentMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewpagerImages = (ViewPager) findViewById(R.id.viewpager_event_images);
+        rlParentMain = (RelativeLayout) findViewById(R.id.rl_parent_main);
         isEnabledPagePadding = true;
         setViewpagerSetting(!isEnabledPagePadding);
         adapterEventImages = new AdapterEventImages(MainActivity.this, imageList, onTouchListener, isEnabledPagePadding);
@@ -38,13 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setViewpagerSetting(boolean isZoomed) {
         if (isZoomed) {
-            viewpagerImages.setPadding(0, 0, 0, 0);
-            viewpagerImages.setClipChildren(false);
-            viewpagerImages.setPageMargin(0);
+            rlParentMain.setPadding(0,0,0,0);
         } else {
-            viewpagerImages.setPadding(20, 0, 20, 0);
-            viewpagerImages.setClipChildren(false);
-            viewpagerImages.setPageMargin(30);
+            rlParentMain.setPadding(padding,0,padding,0);
         }
     }
+
 }
